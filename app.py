@@ -13,7 +13,6 @@ from apps._bergvarmekalkulatoren import bergvarmekalkulatoren
 from apps._sizing import sizing
 from apps._python_programming import python_programming
 from apps._geotechnics import geotechnics
-from old._energy_analysis_old import energy_analysis_old
 from apps._energy_analysis import energy_analysis
 from apps._early_phase import early_phase
 from apps._delta_t import delta_t
