@@ -39,7 +39,6 @@ elif authentication_status:
             st.markdown("---")
     if NAME == None:
         early_phase()
-"""
     else:
         if selected == "Forside":
             front_page()   
@@ -65,8 +64,7 @@ elif authentication_status:
             if NAME == "Randi" or NAME == "Magne" or NAME == "Henrik":
                 power_grid()
             else:
-                st.write("**Konfidensielle data - be om tilgang**")
-"""            
+                st.write("**Konfidensielle data - be om tilgang**")           
 
 
 
