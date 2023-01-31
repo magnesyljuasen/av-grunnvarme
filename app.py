@@ -39,6 +39,7 @@ elif authentication_status:
             st.markdown("---")
     if NAME == None:
         early_phase()
+"""
     else:
         if selected == "Forside":
             front_page()   
@@ -65,7 +66,7 @@ elif authentication_status:
                 power_grid()
             else:
                 st.write("**Konfidensielle data - be om tilgang**")
-            
+"""            
 
 
 
