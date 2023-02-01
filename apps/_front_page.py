@@ -7,8 +7,6 @@ from scripts._utils import load_lottie
 from streamlit_lottie import st_lottie
 
 
-from scripts._utils import Tweet, elspot_today, electricity_database
-
 def front_page():
     #--
     col1, col2, col3 = st.columns(3)
@@ -83,21 +81,6 @@ def front_page():
         st.code("λ")
     st.markdown("---")
     #--
-    st.header("⚡ Dagens strømpris")
-    electricity_database()
-    st.markdown("---")
-    #--
-    st.header("📺 Nyheter")
-    c1, c2 = st.columns(2)
-    with c1:
-        Tweet("https://twitter.com/EGEC_geothermal").component()
-        st.markdown("---")
-        Tweet("https://twitter.com/SGehlin?ref_src=twsrc%5Etfw").component()
-    with c2:
-        Tweet("https://twitter.com/ProfSpitler").component()
-        st.markdown("---")
-        Tweet("https://twitter.com/BeingSaqibJaved").component()
-    st.markdown("---")
     lott = "https://assets1.lottiefiles.com/packages/lf20_l22gyrgm.json"
     st_lottie(load_lottie(lott))
 

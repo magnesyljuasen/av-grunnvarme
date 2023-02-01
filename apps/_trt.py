@@ -108,24 +108,25 @@ class Plotting:
 
 def trt():
     st.title("TRT Analyse")
-    c1, c2 = st.columns(2)
-    with c1:
-        st.header("Sjekkliste")
-        st.write("- Bilde av strømmåler før / etter test")
-        st.write("- Temperaturprofilmålinger før / etter test")
-        st.write("- Kollektorvæske")
-        st.write("- Kollektortype")
-        st.write("- Grunnvannstand")
-        st.write("- Borelogg")
-    with c2:
-        st.header("HUB")
-        url = "https://grunnvarme-asplanviak.hub.arcgis.com/"
-        st.write("[Innmeldingsportal for brønnborere](%s)" % url)
-        url = "https://asplanviak.maps.arcgis.com/apps/webappviewer/index.html?id=fdc2587f84e745d1be12220e8d5ceb06"
-        st.write("[Innkomne tester](%s)" % url)
-        st.caption(""" basum.boring | ZEZSPKJ1 """)
-        st.caption(""" ostlandet.boring | JOUAFOE1 """)
-        st.caption(""" vestnorsk.boring | VVBHFIO1 """)
+    with st.expander("Diverse"):
+        c1, c2 = st.columns(2)
+        with c1:
+            st.header("Sjekkliste")
+            st.write("- Bilde av strømmåler før / etter test")
+            st.write("- Temperaturprofilmålinger før / etter test")
+            st.write("- Kollektorvæske")
+            st.write("- Kollektortype")
+            st.write("- Grunnvannstand")
+            st.write("- Borelogg")
+        with c2:
+            st.header("HUB")
+            url = "https://grunnvarme-asplanviak.hub.arcgis.com/"
+            st.write("[Innmeldingsportal for brønnborere](%s)" % url)
+            url = "https://asplanviak.maps.arcgis.com/apps/webappviewer/index.html?id=fdc2587f84e745d1be12220e8d5ceb06"
+            st.write("[Innkomne tester](%s)" % url)
+            st.caption(""" basum.boring | ZEZSPKJ1 """)
+            st.caption(""" ostlandet.boring | JOUAFOE1 """)
+            st.caption(""" vestnorsk.boring | VVBHFIO1 """)
     st.markdown("""---""")
 
     st.header("Last opp testdata")

@@ -15,11 +15,12 @@ class EnergyDemand:
         arrays = ["Romoppvarming + Tappevann", "Tappevann", "Romoppvarming"]
         c1, c2 = st.columns(2)
         with c1:
-            self.selected_area = st.number_input("Areal", min_value=1, value=1000, max_value=100000, step = 250)
+            self.selected_area = st.number_input("Oppvarmet areal [m²]", min_value=1, value=1000, max_value=100000, step = 250)
             self.selected_building_type = st.selectbox("Bygningstype", options=building_types)
         with c2:
-            self.selected_building_standard = st.selectbox("Bygningsstandard", options=building_standard)
-            selected_array_name = st.selectbox("Behovsprofil", options=arrays)
+            self.selected_building_standard = st.selectbox("Bygningsstandard", options=building_standard, help=
+            "*Regular* tilsvarer eldre bygg | *Efficient* tilsvarer TEK10/TEK17 bygg eller eldre bygg som rehabiliteres | *Very efficient* tilsvarer passivhusstandard")
+            selected_array_name = st.selectbox("Energibehovsprofil", options=arrays)
             if selected_array_name == "Romoppvarming + Tappevann":
                 selected_array = "Thermal"
             if selected_array_name == "Romoppvarming":

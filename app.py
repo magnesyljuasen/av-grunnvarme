@@ -18,6 +18,8 @@ from apps._early_phase import early_phase
 from apps._delta_t import delta_t
 from apps._electricity_data import power_grid
 from apps._undisturbed_temperature import undisturbed_temperature
+from apps._elprice import elprice
+from apps._news import news
 
 from scripts._ghetool import main_functionalities
 
@@ -34,7 +36,7 @@ elif authentication_status:
         authenticator.logout('Logg ut', 'sidebar')
         if NAME != None:
             st.title(f'Hei {NAME}!')
-            options = ["Forside", "Prosjektoversikt", "Termisk responstest", "Bergvarmekalkulatoren", "Tidligfasedimensjonering", "Energianalyse", "Python", "Geoteknisk vurdering", "ΔT", "Uforstyrret temperatur", "Tensio"]
+            options = ["Forside", "Prosjektoversikt", "Termisk responstest", "Bergvarmekalkulatoren", "Tidligfasedimensjonering", "Energianalyse", "Python", "Geoteknisk vurdering", "Nyheter", "Dagens strømpris", "ΔT", "Uforstyrret temperatur", "Tensio"]
             selected = st.radio("Velg app", options, index=0)
             st.markdown("---")
     if NAME == None:
@@ -58,6 +60,10 @@ elif authentication_status:
             geotechnics()
         if selected == "ΔT":
             delta_t()
+        if selected == "Dagens strømpris":
+            elprice()
+        if selected == "Nyheter":
+            news()
         if selected == "Uforstyrret temperatur":
             undisturbed_temperature()
         if selected == "Tensio":
