@@ -16,14 +16,24 @@ from scripts._peakshaving import peakshaving
 def early_phase():
     st.warning("Under utvikling...")
     st.title("Tidligfasedimensjonering av energibrønnpark")
-    st.header("Hva gjør verktøyet?")
-    st.write("")
+    st.caption("Spørsmål til verktøyet? Ta kontakt: Magne Syljuåsen | magne.syljuasen@asplanviak.no ")
+#    st.header("Hva gjør verktøyet?")
+#    st.write("""Dette verktøyet gir et tidlig estimat for størrelse på brønnpark til et bygg eller område. 
+#    Beregningene tar utgangspunkt i timeverdier til oppvarming, og kan enten estimeres vha. PROFet eller lastes opp selv som en excel-fil. """)
+
+#    st.write(""" PROFet er en temperaturavhengig lastprofilmodell 
+#    som baserer seg på reelle måledata fra bygg. Modellen gjør det mulig å estimere energibehovet 
+#    til romoppvarming, varmt tappevann og elektrisitet for bygg.""")
+
+#    st.write(""" Deretter kan energibrønnparken dimensjoneres. Dimensjoneringen går ut på å simulere temperaturnivåene i brønnparken ut ifra
+#    energi- og effektuttak/tilførsel, og forutsetningene i kapittel Ⅱ) """)
+#    st.markdown("---")
     #---
     st.header("Ⅰ) Energibehov")
     selected_input = st.radio("Hvordan vil du legge inn input?", options=["PROFet", "Last opp"])
     if selected_input == "PROFet":
         st.subheader("Termisk energibehov fra PROFet")
-        st.caption("Foreløpig begrenset til Trondheimsklima")
+        st.info("Foreløpig begrenset til Trondheimsklima")
         energy_demand = EnergyDemand()
         demand_array, selected_array = energy_demand.get_thermal_arrays_from_input()
         Plotting().hourly_plot(demand_array, selected_array, Plotting().FOREST_GREEN)
@@ -116,6 +126,17 @@ def early_phase():
     st.markdown("---")
     #---
     st.header("Ⅱ) Dimensjonering av brønnpark")
+    st.info("Disse resultatene må kvalitetssjekkes!")
+    with st.expander("Generelle råd"):
+        st.write(""" - Avstanden mellom brønnene bør være minst 15 meter slik at de ikke henter varme fra samme bergvolum. 
+        Der det er tilgengelig plass etterstrebes en mest mulig åpen konfigurasjon""")
+        st.write(""" - 250 - 300 m er vanlig brønndybde. Noen av de store brønnborerfirmaene kan også bore dypere brønner. 
+        Dype brønner kan være aktuelt i områder med lite tilgjengelig plass, eller der løsmassemektigheten er stor. """)
+        st.write(""" - Det settes ofte ulike kriterier i prosjekter for når temperaturnivåene er OK. 
+        Ofte sier vi at temperaturen ved dellast ikke bør bli lavere enn 1 °C etter 25 års drift.
+        Andre ganger kan det være et kriterie at temperaturen inn til varmepumpa ikke skal være lavere enn 1 °C. """)
+        st.write(""" - I områder med marine løsmasser (leire) er det kritisk at brønnparken ikke fryser. 
+        Gjentatte fryse- og tineprosesser i leire gir setningsskader.""")
 #    st.write("""I denne delen simuleres kollektorvæsketemperaturen i energibrønnen(e) 
 #    ut ifra energien som skal leveres fra brønnene, størrelsen på varmepumpa og forutsetningene under. 
 #    Det er et samspill mellom disse faktorene som bestemmer hvor mange brønner som er nødvendig. """)
@@ -159,6 +180,8 @@ def early_phase():
     simulation_obj.HEAT_CAPACITY = heat_carrier_fluid_capacities[heat_carrier_fluid]
     simulation_obj._run_simulation()
 
+    st.markdown("---")
+    st.header("Oppsummering")
     buffer = BytesIO()
 
     df1 = pd.DataFrame({
@@ -172,12 +195,22 @@ def early_phase():
         df1.to_excel(writer, sheet_name="Sheet1", index=False)
         writer.save()
 
+        st.write("Her kan du laste ned resultater fra beregningene til excel-format.")
         st.download_button(
-            label="Last ned timeserier",
+            label="Last ned resultater",
             data=buffer,
             file_name="Energibehov.xlsx",
             mime="application/vnd.ms-excel",
         )
+
+    st.markdown("---")
+    st.write("**Vi hjelper gjerne til med grunnvarmeprosjekter, ta kontakt! 😊**")
+    st.write(""" - Johanne Strålberg | johanne.stralberg@asplanviak.no""")
+    st.write(""" - Sofie Hartvigsen | sofie.hartvigsen@asplanviak.no""")
+    st.write(""" - Magne Syljuåsen | magne.syljuasen@asplanviak.no""")
+    st.write(""" - Henrik Holmberg | henrik.holmberg@asplanviak.no""")
+    st.write(""" - Randi Kalskin Ramstad | randi.kalskin.ramstad@asplanviak.no""")
+    
     #--
 #    st.header("Ⅲ) Kostnader")
 #    st.subheader("Forutsetninger")
